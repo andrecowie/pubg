@@ -31,9 +31,9 @@ print("Starting Loop")
 # results = np.ndarray()
 df_sample = train_df.sample(1000)
 z = mutual_info_regression(df_sample[df_sample.columns[:-1]].as_matrix(), df_sample[df_sample.columns[-1]].as_matrix())
-for x in range(0, 1000):
+for x in range(0, 250):
     print("Iteration: ", x)
-    df_sample = train_df.sample(5000) 
+    df_sample = train_df.sample(2500) 
     z = np.vstack([z, mutual_info_regression(df_sample[df_sample.columns[:-1]].as_matrix(), df_sample[df_sample.columns[-1]].as_matrix())])
 
 for x in range(0,14):
