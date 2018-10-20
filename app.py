@@ -5,10 +5,10 @@ from sklearn.ensemble import ExtraTreesRegressor, AdaBoostRegressor, BaggingRegr
 from sklearn.linear_model import LinearRegression 
 from sklearn.model_selection import train_test_split
 
-kbest = SelectKBest(mutual_info_regression, k=10 )
+k_best = SelectKBest(mutual_info_regression, k=10 )
 print("Starting file load.")
-train_df = pd.read_csv("data/train.csv")
-test = pd.read_csv("data/test.csv")
+train_df = pd.read_csv("data/train_V2.csv")
+test = pd.read_csv("data/test_V2.csv")
 print("Files loaded!")
 train_df, test_df = train_test_split(
     train_df
@@ -31,10 +31,10 @@ print("Starting Loop")
 # results = np.ndarray()
 df_sample = train_df.sample(1000)
 z = mutual_info_regression(df_sample[df_sample.columns[:-1]].as_matrix(), df_sample[df_sample.columns[-1]].as_matrix())
-for x in range(0, 250):
-    print("Iteration: ", x)
-    df_sample = train_df.sample(2500) 
-    z = np.vstack([z, mutual_info_regression(df_sample[df_sample.columns[:-1]].as_matrix(), df_sample[df_sample.columns[-1]].as_matrix())])
+# for x in range(0, 250):
+#     print("Iteration: ", x)
+#     df_sample = train_df.sample(2500) 
+#     z = np.vstack([z, mutual_info_regression(df_sample[df_sample.columns[:-1]].as_matrix(), df_sample[df_sample.columns[-1]].as_matrix())])
 
-for x in range(0,14):
-    print(df_sample.columns[x],z[:,:].mean(axis=0)[x])
+# for x in range(0,14):
+#     print(df_sample.columns[x],z[:,:].mean(axis=0)[x])
